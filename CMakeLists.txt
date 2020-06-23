@@ -2,6 +2,13 @@ cmake_minimum_required(VERSION 3.0)
 
 project(RecastNavigation)
 
+find_package(catkin)
+
+catkin_package(
+INCLUDE_DIRS DebugUtils/Include Detour/Include DetourTileCache/Include DetourCrowd/Include Recast/Include RecastDemo/Contrib/fastlz
+LIBRARIES ${PROJECT_NAME}
+)
+
 # lib versions
 SET(SOVERSION 1)
 SET(VERSION 1.0.0)

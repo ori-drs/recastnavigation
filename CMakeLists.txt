@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.0.2)
 
 project(recast_navigation)
 
@@ -29,12 +29,12 @@ option(RECASTNAVIGATION_STATIC "Build static libraries" ON)
 #endif ()
 
 set(RECAST_INCLUDE_DIRS
-  DebugUtils/Include
-  Detour/Include
-  DetourTileCache/Include
-  DetourCrowd/Include
-  Recast/Include
-  RecastDemo/Contrib/fastlz
+  DebugUtils/Include/
+  Detour/Include/
+  DetourTileCache/Include/
+  DetourCrowd/Include/
+  Recast/Include/
+  RecastDemo/Contrib/fastlz/
 )
 include_directories(${RECAST_INCLUDE_DIRS})
 
@@ -52,3 +52,12 @@ add_library(${PROJECT_NAME}
   ${RecastSources}
 )
 
+install(TARGETS ${PROJECT_NAME}
+  ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
+
+install(DIRECTORY ${RECAST_INCLUDE_DIRS}
+  DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
+)
